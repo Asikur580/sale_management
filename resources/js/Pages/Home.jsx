@@ -4,7 +4,7 @@ export default function Home({page}) {
     return (
         <>
         <About />
-        <h1 className="title text-center underline">Hello user</h1>
+        <h1 className="title text-center underline">Hello Asikur</h1>
         </>
     );
 }
