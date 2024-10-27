@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->string('serial')->nullable();
             $table->string('warranty')->nullable();
-            $table->string('purchese_form')->nullable();
+            $table->string('purchase_form')->nullable();
             $table->double('buy_price');
             $table->double('sell_price');
             $table->integer('quantity');

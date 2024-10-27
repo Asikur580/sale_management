@@ -13,7 +13,7 @@ class Product extends Model
         'model',
         'serial',
         'warranty',
-        'purchese_form',
+        'purchase_form',
         'buy_price',
         'sell_price',
         'quantity',
