@@ -4,8 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -30,3 +31,9 @@ Route::post('categoryDelete/{category}', [CategoryController::class, 'destroy'])
 Route::post('productStore', [ProductController::class, 'store'])->name('product.store');
 Route::post('productUpdate/{product}', [ProductController::class, 'update'])->name('product.update');
 Route::post('productDelete/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+
+//customer 
+Route::post('customerStore', [CustomerController::class, 'store'])->name('customers.store');
+Route::post('customerUpdate/{customer}', [CustomerController::class, 'update'])->name('customers.update');
+Route::post('customerDelete/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+
