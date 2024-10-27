@@ -12,12 +12,12 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
+Route::post('userStore',[UserController::class,'store']);
 Route::post('login',[UserController::class,'login']);
 
 
 // brand 
-Route::post('brandStore', [BrandController::class, 'store'])->name('brands.store');
+Route::post('brandStore', [BrandController::class, 'store'])->name('brands.store');//->middleware(['authUser']);
 Route::post('brandUpdate/{brand}', [BrandController::class, 'update'])->name('brands.update');
 Route::post('brandDelete/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
 

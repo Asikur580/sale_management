@@ -37,8 +37,7 @@ class ProductController extends Controller
 
     // Update the specified product
     public function update(Request $request, $id)
-    {
-        // dd($request->purchase_form);
+    {        
         $request->validate([
             'name' => 'required|string|max:255',
             'cat_id' => 'required|exists:categories,id',
