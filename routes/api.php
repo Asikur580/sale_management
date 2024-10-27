@@ -32,6 +32,12 @@ Route::post('productStore', [ProductController::class, 'store'])->name('product.
 Route::post('productUpdate/{product}', [ProductController::class, 'update'])->name('product.update');
 Route::post('productDelete/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 
+//in out product
+Route::post('stock_in', [ProductController::class, 'stockIn'])->name('stock_in');
+Route::post('stock_out', [ProductController::class, 'stockOut'])->name('stock_out');
+
+
+
 //customer 
 Route::post('customerStore', [CustomerController::class, 'store'])->name('customers.store');
 Route::post('customerUpdate/{customer}', [CustomerController::class, 'update'])->name('customers.update');
