@@ -105,13 +105,12 @@ class ProductController extends Controller
             $product->save(); // Save the changes to the database
 
             DB::commit();
-            
+
             return response()->json([
                 'message' => 'Stock added successfully.',
                 'data' => $stockIn,
                 'updated_product' => $product
             ], 201);
-
         } catch (Exception $e) {
             DB::rollBack();
             return 0;
@@ -132,6 +131,17 @@ class ProductController extends Controller
                 'in_out_date' => 'required|date',
             ]);
 
+            // Retrieve the product
+            $product = Product::find($request->product_id);
+
+            // Check if the product quantity is sufficient
+            if ($product->quantity < $request->quantity) {
+                return response()->json([
+                    'message' => 'Insufficient stock available.',
+                    'current_quantity' => $product->quantity,
+                ], 400); // 400 Bad Request
+            }
+
             $stockOut = StockInOut::create([
                 'product_id' => $request->product_id,
                 'quantity' => $request->quantity,
@@ -141,8 +151,7 @@ class ProductController extends Controller
                 'in_out_date' => $request->in_out_date,
             ]);
 
-            // Update the product's quantity (for stock out)
-            $product = Product::find($request->product_id);
+            // Update the product's quantity
             $product->quantity -= $request->quantity; // Decrease the product quantity
             $product->save(); // Save the changes to the database
 
@@ -151,9 +160,8 @@ class ProductController extends Controller
             return response()->json([
                 'message' => 'Stock removed successfully.',
                 'data' => $stockOut,
-                'updated_product' => $product             
+                'updated_product' => $product
             ], 201);
-
         } catch (Exception $e) {
             DB::rollBack();
             return 0;
