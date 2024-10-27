@@ -12,12 +12,12 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
+Route::post('userStore',[UserController::class,'store']);
 Route::post('login',[UserController::class,'login']);
 
 
 // brand 
-Route::post('brandStore', [BrandController::class, 'store'])->name('brands.store');
+Route::post('brandStore', [BrandController::class, 'store'])->name('brands.store');//->middleware(['authUser']);
 Route::post('brandUpdate/{brand}', [BrandController::class, 'update'])->name('brands.update');
 Route::post('brandDelete/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
 
@@ -31,6 +31,12 @@ Route::post('categoryDelete/{category}', [CategoryController::class, 'destroy'])
 Route::post('productStore', [ProductController::class, 'store'])->name('product.store');
 Route::post('productUpdate/{product}', [ProductController::class, 'update'])->name('product.update');
 Route::post('productDelete/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+
+//in out product
+Route::post('stock_in', [ProductController::class, 'stockIn'])->name('stock_in');
+Route::post('stock_out', [ProductController::class, 'stockOut'])->name('stock_out');
+
+
 
 //customer 
 Route::post('customerStore', [CustomerController::class, 'store'])->name('customers.store');
