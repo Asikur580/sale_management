@@ -162,6 +162,7 @@ class ProductController extends Controller
                 'data' => $stockOut,
                 'updated_product' => $product
             ], 201);
+            
         } catch (Exception $e) {
             DB::rollBack();
             return 0;
